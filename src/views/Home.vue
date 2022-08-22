@@ -23,15 +23,6 @@ export default {
     },
     createRecipe: function() {
       console.log('creating recipe...');
-      // get data from the user
-      // send that data to rails
-      // var params = {
-      //   title: this.newRecipe.title,
-      //   ingredients: "lettuce, tomatoes, bacon",
-      //   directions: "mix ingredients together",
-      //   prep_time: 5,
-      //   chef: "brian",        
-      // }
       console.log(this.newRecipe);
       axios.post("http://localhost:3000/recipes.json", this.newRecipe).then(response => {
         console.log(response.data);
@@ -43,6 +34,12 @@ export default {
       console.log(theRecipe);
       this.currentRecipe = theRecipe;
       document.querySelector('#recipe-details').showModal();
+    },
+    updateRecipe: function() {
+      console.log('updating recipe...')
+      axios.patch("http://localhost:3000/recipes/26.json", {title: "cannoli"}).then(response => {
+        console.log(response.data)
+      })
     }
   }
 };
@@ -79,6 +76,7 @@ export default {
         <p><b>ingredients:</b> {{ currentRecipe.ingredients }}</p>
         <p><b>prep_time:</b> {{ currentRecipe.prep_time }}</p>
         <p><b>chef:</b> {{ currentRecipe.chef }}</p>
+        <button v-on:click="updateRecipe()">Update Recipe</button>
         <button>Close</button>
       </form>      
     </dialog>
