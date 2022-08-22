@@ -5,7 +5,8 @@ export default {
     return {
       message: "Welcome to Vue.js!",
       name: "brian",
-      recipes: []
+      recipes: [],
+      newRecipe: {}
     };
   },
   created: function () {
@@ -23,14 +24,15 @@ export default {
       console.log('creating recipe...');
       // get data from the user
       // send that data to rails
-      var params = {
-        title: "BEST salad",
-        ingredients: "lettuce, tomatoes, bacon",
-        directions: "mix ingredients together",
-        prep_time: 5,
-        chef: "brian",        
-      }
-      axios.post("http://localhost:3000/recipes.json", params).then(response => {
+      // var params = {
+      //   title: this.newRecipe.title,
+      //   ingredients: "lettuce, tomatoes, bacon",
+      //   directions: "mix ingredients together",
+      //   prep_time: 5,
+      //   chef: "brian",        
+      // }
+      console.log(this.newRecipe);
+      axios.post("http://localhost:3000/recipes.json", this.newRecipe).then(response => {
         console.log(response.data);
         this.recipes.push(response.data);
       })
@@ -44,6 +46,11 @@ export default {
     <h1>{{ message }}</h1>
     <hr />
     <hr />
+    <p>Title: <input type="text" v-model="newRecipe.title" /></p>
+    <p>ingredients: <input type="text" v-model="newRecipe.ingredients" /></p>
+    <p>directions: <input type="text" v-model="newRecipe.directions" /></p>
+    <p>prep_time: <input type="text" v-model="newRecipe.prep_time" /></p>
+    <p>chef: <input type="text" v-model="newRecipe.chef" /></p>
     <button v-on:click="createRecipe()">Make new recipe</button>
     <hr />
     <hr />
