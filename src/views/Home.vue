@@ -6,7 +6,8 @@ export default {
       message: "Welcome to Vue.js!",
       name: "brian",
       recipes: [],
-      newRecipe: {}
+      newRecipe: {},
+      currentRecipe: {}
     };
   },
   created: function () {
@@ -36,6 +37,12 @@ export default {
         console.log(response.data);
         this.recipes.push(response.data);
       })
+    },
+    showRecipe: function(theRecipe) {
+      console.log('showing recipe...')
+      console.log(theRecipe);
+      this.currentRecipe = theRecipe;
+      document.querySelector('#recipe-details').showModal();
     }
   }
 };
@@ -54,24 +61,27 @@ export default {
     <button v-on:click="createRecipe()">Make new recipe</button>
     <hr />
     <hr />
-
-
-
-
     <!-- <h1>{{ recipes }}</h1> -->
     <div v-for="recipe in recipes" v-bind:key="recipe.id">
       <p>{{ recipe.title }}</p>
       <p>{{ recipe.directions }}</p>
       <p>{{ recipe.image_url }}</p>
-
-      <!-- v-on:click == @click
-      v-bind:src == :src -->
-      
-      <img v-bind:src="recipe.image_url" />
+      <button v-on:click="showRecipe(recipe)">More Info</button>
+      <!-- <img v-bind:src="recipe.image_url" /> -->
       <br />
       <br />
       <br />
     </div>
+
+    <dialog id="recipe-details">
+      <form method="dialog">
+        <p><b>title:</b> {{ currentRecipe.title }}</p>
+        <p><b>ingredients:</b> {{ currentRecipe.ingredients }}</p>
+        <p><b>prep_time:</b> {{ currentRecipe.prep_time }}</p>
+        <p><b>chef:</b> {{ currentRecipe.chef }}</p>
+        <button>Close</button>
+      </form>      
+    </dialog>
     <!-- <button v-on:click="indexRecipes()">get data</button> -->
   </div>
 </template>
