@@ -31,6 +31,8 @@ export default {
     <div v-for="recipe in recipes" v-bind:key="recipe.id">
       <p>{{ recipe.title }}</p>
       <p>{{ recipe.directions }}</p>
+      <p>{{ recipe.image_url }}</p>
+      <img v-bind:src="recipe.image_url" />
       <br />
       <br />
       <br />
