@@ -37,7 +37,7 @@ export default {
     },
     updateRecipe: function() {
       console.log('updating recipe...')
-      axios.patch("http://localhost:3000/recipes/26.json", {title: "cannoli"}).then(response => {
+      axios.patch(`http://localhost:3000/recipes/${this.currentRecipe.id}.json`, this.currentRecipe).then(response => {
         console.log(response.data)
       })
     }
@@ -76,6 +76,12 @@ export default {
         <p><b>ingredients:</b> {{ currentRecipe.ingredients }}</p>
         <p><b>prep_time:</b> {{ currentRecipe.prep_time }}</p>
         <p><b>chef:</b> {{ currentRecipe.chef }}</p>
+        <hr />
+        <hr />
+        <p><b>title:</b> <input type="text" v-model="currentRecipe.title" /></p>
+        <p><b>ingredients:</b> <input type="text" v-model="currentRecipe.ingredients" /></p>
+        <p><b>prep_time:</b> <input type="text" v-model="currentRecipe.prep_time" /></p>
+        <p><b>chef:</b> <input type="text" v-model="currentRecipe.chef" /></p>
         <button v-on:click="updateRecipe()">Update Recipe</button>
         <button>Close</button>
       </form>      
