@@ -8,7 +8,9 @@ export default {
       recipes: []
     };
   },
-  created: function () { },
+  created: function () {
+    this.indexRecipes();
+   },
   methods: {
     indexRecipes: function() {
       console.log('getting the data');
@@ -26,14 +28,14 @@ export default {
     <h1>{{ message }}</h1>
     <h1>{{ name }}</h1>
     <!-- <h1>{{ recipes }}</h1> -->
-    <div v-for="recipe in recipes">
+    <div v-for="recipe in recipes" v-bind:key="recipe.id">
       <p>{{ recipe.title }}</p>
       <p>{{ recipe.directions }}</p>
       <br />
       <br />
       <br />
     </div>
-    <button v-on:click="indexRecipes()">get data</button>
+    <!-- <button v-on:click="indexRecipes()">get data</button> -->
   </div>
 </template>
 
