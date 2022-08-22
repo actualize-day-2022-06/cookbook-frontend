@@ -1,13 +1,23 @@
 <script>
+import axios from "axios";
 export default {
-  data: function() {
+  data: function () {
     return {
       message: "Welcome to Vue.js!",
-      name: "brian"
+      name: "brian",
+      recipes: []
     };
   },
-  created: function() {},
-  methods: {}
+  created: function () { },
+  methods: {
+    indexRecipes: function() {
+      console.log('getting the data');
+      axios.get("http://localhost:3000/recipes.json").then(response => {
+        console.log(response.data);
+        this.recipes = response.data
+      })
+    }
+  }
 };
 </script>
 
@@ -15,8 +25,17 @@ export default {
   <div class="home">
     <h1>{{ message }}</h1>
     <h1>{{ name }}</h1>
-    <button>new button</button>
+    <!-- <h1>{{ recipes }}</h1> -->
+    <div v-for="recipe in recipes">
+      <p>{{ recipe.title }}</p>
+      <p>{{ recipe.directions }}</p>
+      <br />
+      <br />
+      <br />
+    </div>
+    <button v-on:click="indexRecipes()">get data</button>
   </div>
 </template>
 
-<style></style>
+<style>
+</style>
