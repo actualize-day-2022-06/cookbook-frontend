@@ -41,11 +41,18 @@ export default {
         console.log(response.data)
       })
     },
-    destroyRecipe: function() {
+    destroyRecipe: function(theRecipe) {
+      // theRecipe === this.currentRecipe
       console.log('destroying recipe...');
+      console.log(theRecipe.id)
       // send the proper http request to rails to delete the right recipe
-      axios.delete("http://localhost:3000/recipes/28").then(response => {
+      axios.delete("http://localhost:3000/recipes/" + theRecipe.id).then(response => {
         console.log(response.data);
+        // find the index of this recipe in the array
+        var index = this.recipes.indexOf(theRecipe);
+        console.log(index);
+        // delete that element from the array
+        this.recipes.splice(index, 1);
       })
     }
   }
@@ -67,6 +74,7 @@ export default {
     <hr />
     <!-- <h1>{{ recipes }}</h1> -->
     <div v-for="recipe in recipes" v-bind:key="recipe.id">
+      <p>{{ recipe.id }}</p>
       <p>{{ recipe.title }}</p>
       <p>{{ recipe.directions }}</p>
       <p>{{ recipe.image_url }}</p>
@@ -79,6 +87,7 @@ export default {
 
     <dialog id="recipe-details">
       <form method="dialog">
+        <p><b>id:</b> {{ currentRecipe.id }}</p>
         <p><b>title:</b> {{ currentRecipe.title }}</p>
         <p><b>ingredients:</b> {{ currentRecipe.ingredients }}</p>
         <p><b>prep_time:</b> {{ currentRecipe.prep_time }}</p>
@@ -90,7 +99,7 @@ export default {
         <p><b>prep_time:</b> <input type="text" v-model="currentRecipe.prep_time" /></p>
         <p><b>chef:</b> <input type="text" v-model="currentRecipe.chef" /></p>
         <button v-on:click="updateRecipe()">Update Recipe</button>
-        <button v-on:click="destroyRecipe()">Delete Recipe</button>
+        <button v-on:click="destroyRecipe(currentRecipe)">Delete Recipe</button>
 
         <button>Close</button>
       </form>      
