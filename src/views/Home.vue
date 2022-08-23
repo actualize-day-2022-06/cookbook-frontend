@@ -40,6 +40,13 @@ export default {
       axios.patch(`http://localhost:3000/recipes/${this.currentRecipe.id}.json`, this.currentRecipe).then(response => {
         console.log(response.data)
       })
+    },
+    destroyRecipe: function() {
+      console.log('destroying recipe...');
+      // send the proper http request to rails to delete the right recipe
+      axios.delete("http://localhost:3000/recipes/28").then(response => {
+        console.log(response.data);
+      })
     }
   }
 };
@@ -83,6 +90,8 @@ export default {
         <p><b>prep_time:</b> <input type="text" v-model="currentRecipe.prep_time" /></p>
         <p><b>chef:</b> <input type="text" v-model="currentRecipe.chef" /></p>
         <button v-on:click="updateRecipe()">Update Recipe</button>
+        <button v-on:click="destroyRecipe()">Delete Recipe</button>
+
         <button>Close</button>
       </form>      
     </dialog>
