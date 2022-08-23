@@ -16,7 +16,7 @@ export default {
   methods: {
     indexRecipes: function() {
       console.log('getting the data');
-      axios.get("http://localhost:3000/recipes.json").then(response => {
+      axios.get("/recipes.json").then(response => {
         console.log(response.data);
         this.recipes = response.data
       })
@@ -24,7 +24,7 @@ export default {
     createRecipe: function() {
       console.log('creating recipe...');
       console.log(this.newRecipe);
-      axios.post("http://localhost:3000/recipes.json", this.newRecipe).then(response => {
+      axios.post("/recipes.json", this.newRecipe).then(response => {
         console.log(response.data);
         this.recipes.push(response.data);
       })
@@ -37,7 +37,7 @@ export default {
     },
     updateRecipe: function() {
       console.log('updating recipe...')
-      axios.patch(`http://localhost:3000/recipes/${this.currentRecipe.id}.json`, this.currentRecipe).then(response => {
+      axios.patch(`/recipes/${this.currentRecipe.id}.json`, this.currentRecipe).then(response => {
         console.log(response.data)
       })
     },
@@ -46,7 +46,7 @@ export default {
       console.log('destroying recipe...');
       console.log(theRecipe.id)
       // send the proper http request to rails to delete the right recipe
-      axios.delete("http://localhost:3000/recipes/" + theRecipe.id).then(response => {
+      axios.delete("/recipes/" + theRecipe.id).then(response => {
         console.log(response.data);
         // find the index of this recipe in the array
         var index = this.recipes.indexOf(theRecipe);
