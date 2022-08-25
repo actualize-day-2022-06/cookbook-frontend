@@ -27,7 +27,7 @@
   <div class="recipes-show">    
     <h1>{{ recipe.id }}</h1>
     <p>title: {{ recipe.title }}</p>
-    <p>description: {{ recipe.description }}</p>
+    <p>directions: {{ recipe.directions }}</p>
     <p>prep_time: {{ recipe.prep_time }}</p>
     <p>chef: {{ recipe.chef }}</p>
     <p>ingredients: {{ recipe.ingredients }}</p>
@@ -37,6 +37,7 @@
       {{ ingredient }}
     </li>
     </ol>
+    <a v-bind:href="`/recipes/${recipe.id}/edit`">Edit</a>
   </div>
 </template>
 
