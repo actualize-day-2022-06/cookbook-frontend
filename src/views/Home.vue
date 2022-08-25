@@ -7,7 +7,8 @@ export default {
       name: "brian",
       recipes: [],
       newRecipe: {},
-      currentRecipe: {}
+      currentRecipe: {},
+      errors: []
     };
   },
   created: function () {
@@ -27,6 +28,9 @@ export default {
       axios.post("/recipes.json", this.newRecipe).then(response => {
         console.log(response.data);
         this.recipes.push(response.data);
+      }).catch(error => {
+        console.log(error.response.data);
+        this.errors = error.response.data;
       })
     },
     showRecipe: function(theRecipe) {
@@ -61,7 +65,7 @@ export default {
 
 <template>
   <div class="home">
-    <h1>{{ message }}</h1>
+    <h1>{{ errors }}</h1>
     <hr />
     <hr />
     <p>Title: <input type="text" v-model="newRecipe.title" /></p>
