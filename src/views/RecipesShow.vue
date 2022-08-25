@@ -13,7 +13,8 @@
     methods: {
       showRecipe: function() {
         console.log('in show recipe')
-        axios.get("/recipes/39.json").then(response => {
+        console.log(this.$route.params.id)
+        axios.get("/recipes/" + this.$route.params.id + ".json").then(response => {
           console.log(response.data);
           this.recipe = response.data;
         })

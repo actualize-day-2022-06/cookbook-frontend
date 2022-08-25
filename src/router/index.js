@@ -19,14 +19,14 @@ const routes = [
     component: RecipesIndex
   },
   {
-    path: '/recipes/39',
-    name: 'recipes-show',
-    component: RecipesShow
-  },
-  {
     path: '/recipes/new',
     name: 'recipes-new',
     component: RecipesNew
+  },
+  {
+    path: '/recipes/:id',
+    name: 'recipes-show',
+    component: RecipesShow
   },
   {
     path: '/signup',

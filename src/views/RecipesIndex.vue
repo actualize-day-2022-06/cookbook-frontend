@@ -28,7 +28,8 @@
     <!-- {{ recipes }} -->
     <div v-for="recipe in recipes">
       <p>{{ recipe.id }}</p>
-      <p>{{ recipe.title }}</p>
+      <!-- <p> <a v-bind:href="'/recipes/' + recipe.id">{{ recipe.title }}</a> </p> -->
+      <p> <a v-bind:href="`/recipes/${recipe.id}`">{{ recipe.title }}</a> </p>
       <p>{{ recipe.ingredients }}</p>
       <hr />
     </div>
