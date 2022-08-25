@@ -4,6 +4,8 @@ import Signup from '../views/SignupView.vue'
 import LoginView from '../views/LoginView.vue'
 import LogoutView from '../views/LogoutView.vue'
 import RecipesIndex from '../views/RecipesIndex.vue'
+import RecipesNew from '../views/RecipesNew.vue'
+import RecipesShow from '../views/RecipesShow.vue'
 
 const routes = [
   {
@@ -15,6 +17,16 @@ const routes = [
     path: '/recipes',
     name: 'recipes-index',
     component: RecipesIndex
+  },
+  {
+    path: '/recipes/39',
+    name: 'recipes-show',
+    component: RecipesShow
+  },
+  {
+    path: '/recipes/new',
+    name: 'recipes-new',
+    component: RecipesNew
   },
   {
     path: '/signup',

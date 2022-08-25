@@ -27,6 +27,7 @@
     <h1>{{ message }}</h1>
     <!-- {{ recipes }} -->
     <div v-for="recipe in recipes">
+      <p>{{ recipe.id }}</p>
       <p>{{ recipe.title }}</p>
       <p>{{ recipe.ingredients }}</p>
       <hr />

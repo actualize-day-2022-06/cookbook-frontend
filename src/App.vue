@@ -1,9 +1,10 @@
 <template>
   <div id="nav">
-    <router-link to="/">Home</router-link> |
+    <router-link to="/recipes">Home</router-link> |
     <router-link to="/signup">Signup</router-link> |
     <router-link to="/login">login</router-link> |
     <router-link to="/logout">logout</router-link> |
+    <router-link to="/recipes/new">New Recipe</router-link> |
     <router-link to="/about">About</router-link>
   </div>
   <router-view/>
