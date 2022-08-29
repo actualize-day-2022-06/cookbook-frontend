@@ -25,6 +25,13 @@
           console.log(response.data);
           this.$router.push(`/recipes/${this.recipe.id}`);
         })
+      },
+      deleteRecipe: function() {
+        console.log('deleting recipe...')
+        axios.delete(`http://localhost:3000/recipes/${this.recipe.id}`).then(response => {
+          console.log(response.data);
+          this.$router.push("/recipes")
+        })
       }
     },
   };
@@ -40,6 +47,8 @@
     <p>chef: <input type="text" v-model="recipe.chef" /></p>
     <p>ingredients: <input type="text" v-model="recipe.ingredients" /></p>
     <button v-on:click="updateRecipe()">Update</button>
+
+    <button v-on:click="deleteRecipe()">Delete Recipe</button>
     
   </div>
 </template>
