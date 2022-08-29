@@ -42,7 +42,7 @@
     {{ message }}
     <h1>{{ recipe.id }}</h1>
     <p>title: <input type="text" v-model="recipe.title" /></p>
-    <p>directions: <input type="text" v-model="recipe.directions" /></p>
+    <div>directions: <input type="text" v-model="recipe.directions" /></div>
     <p>prep_time: <input type="text" v-model="recipe.prep_time" /></p>
     <p>chef: <input type="text" v-model="recipe.chef" /></p>
     <p>ingredients: <input type="text" v-model="recipe.ingredients" /></p>
@@ -53,4 +53,11 @@
   </div>
 </template>
 
-<style></style>
+<style>
+  /* selector {
+    attribute: value;
+  } */
+  /* p {
+    color: green
+  } */
+</style>
