@@ -24,25 +24,22 @@
 
 <template>
   <div class="recipes-index">
-    <h1>{{ message }}</h1>
-    <button type="button" class="btn btn-primary">Primary</button>
-<button type="button" class="btn btn-secondary">Secondary</button>
-<button type="button" class="btn btn-success">Success</button>
-<button type="button" class="btn btn-danger">Danger</button>
-<button type="button" class="btn btn-warning">Warning</button>
-<button type="button" class="btn btn-info">Info</button>
-<button type="button" class="btn btn-light">Light</button>
-<button type="button" class="btn btn-dark">Dark</button>
+   
 
-<button type="button" class="btn btn-link">Link</button>
-    <!-- {{ recipes }} -->
-    <div v-for="recipe in recipes">
-      <p>{{ recipe.id }}</p>
-      <!-- <p> <a v-bind:href="'/recipes/' + recipe.id">{{ recipe.title }}</a> </p> -->
-      <p> <a v-bind:href="`/recipes/${recipe.id}`">{{ recipe.title }}</a> </p>
-      <p>{{ recipe.ingredients }}</p>
-      <hr />
+    <div class="row">
+      <div class="col-sm-6" v-for="recipe in recipes">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{ recipe.title }}</h5>
+            <p class="card-text">{{ recipe.directions }}</p>
+            <a v-bind:href="`/recipes/${recipe.id}`" class="btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+            <br />
+      </div>
     </div>
+    <!-- {{ recipes }} -->
+    
   </div>
 </template>
 
