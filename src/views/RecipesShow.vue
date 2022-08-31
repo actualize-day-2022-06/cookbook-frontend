@@ -37,7 +37,7 @@
       {{ ingredient }}
     </li>
     </ol>
-    <a v-bind:href="`/recipes/${recipe.id}/edit`">Edit</a>
+    <a v-if="recipe.owner === true" v-bind:href="`/recipes/${recipe.id}/edit`">Edit</a>
   </div>
 </template>
 
