@@ -4,7 +4,8 @@
     data: function () {
       return {
         message: "Welcome to Vue.j!!!s!",
-        recipes: []
+        recipes: [],
+        searchTerm: "t"
       };
     },
     created: function () {
@@ -17,6 +18,13 @@
           console.log(response.data);
           this.recipes = response.data;
         })
+      },
+      filterRecipes: function() {
+        return this.recipes.filter(recipe => {
+          var lowerSearchTerm = this.searchTerm.toLowerCase();
+          var lowerRecipeTitle = recipe.title.toLowerCase();
+          return lowerRecipeTitle.includes(lowerSearchTerm);
+        })
       }
     },
   };
@@ -24,10 +32,10 @@
 
 <template>
   <div class="recipes-index">
-   
+    Search: <input type="text" v-model="searchTerm" />
 
     <div class="row">
-      <div class="col-sm-6" v-for="recipe in recipes">
+      <div class="col-sm-6" v-for="recipe in filterRecipes()">
         <div class="card">
           <div class="card-body">
             <h5 class="card-title">{{ recipe.title }}</h5>
