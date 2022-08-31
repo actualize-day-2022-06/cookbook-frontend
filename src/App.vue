@@ -46,6 +46,6 @@
 <style>
   #app {
     	font-family: Courier New,Courier,Lucida Sans Typewriter,Lucida Typewriter,monospace; 
-      background-image: url("https://www.toptal.com/designers/subtlepatterns/uploads/more-leaves-on-green.png");
+      /* background-image: url("more-leaves-on-green.png"); */
   }
 </style>
