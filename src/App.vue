@@ -18,12 +18,12 @@
               Authentication
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="/signup">Signup</a></li>
-              <li><a class="dropdown-item" href="/login">Login</a></li>
+              <li v-if="!isLoggedIn"><a class="dropdown-item" href="/signup">Signup</a></li>
+              <li v-if="!isLoggedIn"><a class="dropdown-item" href="/login">Login</a></li>
               <li><hr class="dropdown-divider"></li>
               <li><hr class="dropdown-divider"></li>
               <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="/logout">Logout</a></li>
+              <li v-if="isLoggedIn"><a class="dropdown-item" href="/logout">Logout</a></li>
             </ul>
           </li>
           <li class="nav-item">
@@ -38,10 +38,26 @@
     </div>
   </nav>
   <div class="container">
+    Am I logged in? {{ isLoggedIn }}
     <router-view/>
   </div>
   <p>I am a footer</p>
 </template>
+
+<script>
+  export default {
+    data: function() {
+      return {
+        isLoggedIn: !!localStorage.jwt
+      }
+    },
+    watch: {
+      $route: function() {
+        this.isLoggedIn = !!localStorage.jwt
+      }
+    }
+  }
+</script>
 
 <style>
   #app {
