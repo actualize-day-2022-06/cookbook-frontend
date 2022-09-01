@@ -32,7 +32,11 @@
 
 <template>
   <div class="recipes-index">
-    Search: <input type="text" v-model="searchTerm" />
+    Search: <input type="text" v-model="searchTerm" list="titles" />
+    <datalist id="titles">
+      <option v-for="recipe in recipes">{{ recipe.title }}</option>
+    </datalist>
+
 
     <div class="row">
       <div class="col-sm-6" v-for="recipe in filterRecipes()">
