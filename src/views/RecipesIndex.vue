@@ -9,8 +9,16 @@
         currentRecipe: {}
       };
     },
-    created: function () {
+    mounted: function () {
       this.recipesIndex();
+      var i = 0;
+      // setInterval(function() {
+      //   console.log('something')
+      //   document.querySelector("body").style.backgroundColor = '#' + Math.floor(Math.random()*16777215).toString(16);        
+      //   document.querySelector("h5").style.fontSize = `${i}px`
+      //   i += 2
+      // }, 1000)
+      // .style.css.backgroundColor = 'blue';
     },
     methods: {
       recipesIndex: function() {
