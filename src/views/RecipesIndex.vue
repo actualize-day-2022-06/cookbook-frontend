@@ -5,7 +5,8 @@
       return {
         message: "Welcome to Vue.j!!!s!",
         recipes: [],
-        searchTerm: "t"
+        searchTerm: "t",
+        currentRecipe: {}
       };
     },
     created: function () {
@@ -25,6 +26,10 @@
           var lowerRecipeTitle = recipe.title.toLowerCase();
           return lowerRecipeTitle.includes(lowerSearchTerm);
         })
+      },
+      selectRecipe: function(recipe) {
+        console.log('selecting recipe...')
+        this.currentRecipe = recipe;
       }
     },
   };
@@ -39,7 +44,13 @@
 
 
     <div class="row">
-      <div class="col-sm-6" v-for="recipe in filterRecipes()">
+      <div class="col-sm-6" 
+        v-for="recipe in filterRecipes()" 
+        v-bind:class="{selected: recipe === currentRecipe}" 
+        v-on:click="selectRecipe(recipe)"
+        v-on:mouseover="selectRecipe(recipe)"
+        v-on:mousemove="selectRecipe(recipe)"
+      >
         <div class="card">
           <div class="card-body">
             <h5 class="card-title">{{ recipe.title }}</h5>
@@ -47,7 +58,7 @@
             <a v-bind:href="`/recipes/${recipe.id}`" class="btn btn-primary">Go somewhere</a>
           </div>
         </div>
-            <br />
+        <br />
       </div>
     </div>
     <!-- {{ recipes }} -->
@@ -55,4 +66,8 @@
   </div>
 </template>
 
-<style></style>
+<style>
+  .selected {
+    background-color: steelBlue;
+  }
+</style>
