@@ -7,6 +7,7 @@ import RecipesIndex from '../views/RecipesIndex.vue'
 import RecipesNew from '../views/RecipesNew.vue'
 import RecipesShow from '../views/RecipesShow.vue'
 import RecipesEdit from '../views/RecipesEdit.vue'
+import BackendSearch from '../views/BackendSearch.vue'
 
 const routes = [
   {
@@ -28,6 +29,11 @@ const routes = [
     path: '/recipes/new',
     name: 'recipes-new',
     component: RecipesNew
+  },
+  {
+    path: '/recipes/backend/search',
+    name: 'recipes-backend-search',
+    component: BackendSearch
   },
   {
     path: '/recipes/:id',

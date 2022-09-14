@@ -4,8 +4,8 @@
     data: function () {
       return {
         message: "Welcome to Vue.j!!!s!",
-        recipes: [],
-        searchTerm: "t",
+        recipes: [], 
+        searchTerm: "",       
         currentRecipe: {}
       };
     },
@@ -21,22 +21,22 @@
       // .style.css.backgroundColor = 'blue';
     },
     methods: {
+      search: function() {
+        console.log('searching...')
+        axios.get(`/recipes.json?search=${this.searchTerm}`).then(response => {
+          console.log(response.data);
+          this.recipes = response.data;
+        })
+      },
       recipesIndex: function() {
         console.log('recipes index');
         axios.get("/recipes.json").then(response => {
           console.log(response.data);
           this.recipes = response.data;
         })
-      },
-      filterRecipes: function() {
-        return this.recipes.filter(recipe => {
-          var lowerSearchTerm = this.searchTerm.toLowerCase();
-          var lowerRecipeTitle = recipe.ingredients.toLowerCase();
-          return lowerRecipeTitle.includes(lowerSearchTerm);
-        })
-      },
+      },      
       selectRecipe: function(recipe) {
-        console.log('selecting recipe...')
+        // console.log('selecting recipe...')
         this.currentRecipe = recipe;
       }
     },
@@ -45,15 +45,13 @@
 
 <template>
   <div class="recipes-index">
-    Search: <input type="text" v-model="searchTerm" list="titles" />
-    <datalist id="titles">
-      <option v-for="recipe in recipes">{{ recipe.title }}</option>
-    </datalist>
+    <input type="text" v-model="searchTerm" />
+    <button v-on:click="search()">Search</button>
 
 
     <div class="row">
       <div class="col-sm-6" 
-        v-for="recipe in filterRecipes()" 
+        v-for="recipe in recipes" 
         v-bind:class="{selected: recipe === currentRecipe}" 
         v-on:click="selectRecipe(recipe)"
         v-on:mouseover="selectRecipe(recipe)"
